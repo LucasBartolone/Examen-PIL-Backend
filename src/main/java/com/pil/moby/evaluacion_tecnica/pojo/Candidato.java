@@ -1,5 +1,7 @@
 package com.pil.moby.evaluacion_tecnica.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Candidato {
@@ -8,6 +10,7 @@ public class Candidato {
     private String lastname;
     private Integer yearsExperience;
     private Double salaryPretension;
+    private List<Tecnologia> tecnologias;
 
     public Candidato(Long id, String name, String lastname, Integer yearsExperience, Double salaryPretension) {
         this.id = id;
@@ -15,6 +18,7 @@ public class Candidato {
         this.lastname = lastname;
         this.yearsExperience = yearsExperience;
         this.salaryPretension = salaryPretension;
+        this.tecnologias = new ArrayList<>();
     }
 
     public Long getId() {
@@ -75,6 +79,7 @@ public class Candidato {
         return "Candidato número " + id + ":" + " " +
                 "Nombre completo: " + name + " " + lastname +
                 ". Años de experiencia: " + yearsExperience +
-                ". Pretención salarial: " + salaryPretension;
+                ". Pretención salarial: " + salaryPretension +
+                ". Tecnologias: " + tecnologias;
     }
 }
