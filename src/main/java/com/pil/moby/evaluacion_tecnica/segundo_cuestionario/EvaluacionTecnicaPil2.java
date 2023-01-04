@@ -1,5 +1,11 @@
 package com.pil.moby.evaluacion_tecnica.segundo_cuestionario;
 
+import com.pil.moby.evaluacion_tecnica.pojo.Candidato;
+import com.pil.moby.evaluacion_tecnica.pojo.Tecnologia;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class EvaluacionTecnicaPil2 {
 
@@ -18,7 +24,7 @@ public class EvaluacionTecnicaPil2 {
 
         // Desarrollo de la consigna 1.
         inicializarCandidatos();
-        resolverPunto1();
+        resolverPunto1(inicializarCandidatos());
 
         imprimirMensajePunto(2);
 
@@ -42,8 +48,11 @@ public class EvaluacionTecnicaPil2 {
 
     }
 
-    private static void resolverPunto1() {
-        // TODO: Realizar implementación.
+    private static void resolverPunto1(List<Candidato> listaCandidatos) {
+        Object candidatos[] = listaCandidatos.toArray();
+        for(int i=0; i<candidatos.length; i++){
+            System.out.println(candidatos[i]);
+        }
     }
 
     private static void resolverPunto2() {
@@ -62,8 +71,35 @@ public class EvaluacionTecnicaPil2 {
         // TODO: Realizar implementación.
     }
 
-    private static void inicializarCandidatos() {
-        // TODO: Realizar implementación.
+    private static List<Candidato> inicializarCandidatos() {
+        List<Candidato> candidatos = new ArrayList();
+        List<Tecnologia> tec = inicializarTecnologia();
+
+        candidatos.add(new Candidato(3L, "John", "Doe", 3, 5000.00, Arrays.asList(tec.get(0), tec.get(1), tec.get(2))));
+        candidatos.add(new Candidato(7L, "Matias", "Otamendi", 9, 3000.00 , Arrays.asList(tec.get(7), tec.get(0), tec.get(2))));
+        candidatos.add(new Candidato(1L, "Joaquin", "Tagliafico", 6, 2000.00 , Arrays.asList(tec.get(6), tec.get(3))));
+        candidatos.add(new Candidato(4L, "Gaston", "Mac Allister", 1, 5000.50 , Arrays.asList(tec.get(4), tec.get(3), tec.get(0))));
+        candidatos.add(new Candidato(5L, "Pablo", "De Paul", 4, 9000.50 , Arrays.asList(tec.get(0))));
+        candidatos.add(new Candidato(2L, "Lucas", "Di Maria", 7, 6000.00 , Arrays.asList(tec.get(0), tec.get(1), tec.get(2))));
+        candidatos.add(new Candidato(10L, "Lionel", "Messi", 10, 10000.10 , Arrays.asList(tec.get(2), tec.get(4), tec.get(0))));
+        candidatos.add(new Candidato(9L, "Julian", "Alvarez", 3, 5000.00 , Arrays.asList(tec.get(3), tec.get(6), tec.get(2), tec.get(0))));
+        candidatos.add(new Candidato(8L, "Lula", "Martinez", 2, 1000.00 , Arrays.asList(tec.get(5), tec.get(0), tec.get(1))));
+        candidatos.add(new Candidato(6L, "Agustin", "Dybala", 2, 1000.00 , Arrays.asList(tec.get(0), tec.get(5), tec.get(1))));
+
+        return candidatos;
+    }
+    private static List<Tecnologia> inicializarTecnologia() {
+        List<Tecnologia> tecnologias = new ArrayList();
+        tecnologias.add(new Tecnologia(1L, "Java"));
+        tecnologias.add(new Tecnologia(2L, "Angular"));
+        tecnologias.add(new Tecnologia(3L, "SQL"));
+        tecnologias.add(new Tecnologia(4L, "NoSQL"));
+        tecnologias.add(new Tecnologia(5L, "Vue"));
+        tecnologias.add(new Tecnologia(6L, ".NET"));
+        tecnologias.add(new Tecnologia(7L, "MongoDB"));
+        tecnologias.add(new Tecnologia(8L, "NodeJS"));
+
+        return tecnologias;
     }
 
     /**

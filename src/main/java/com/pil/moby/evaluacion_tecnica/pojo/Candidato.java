@@ -12,13 +12,13 @@ public class Candidato {
     private Double salaryPretension;
     private List<Tecnologia> tecnologias;
 
-    public Candidato(Long id, String name, String lastname, Integer yearsExperience, Double salaryPretension) {
+    public Candidato(Long id, String name, String lastname, Integer yearsExperience, Double salaryPretension, List<Tecnologia> tecnologias) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.yearsExperience = yearsExperience;
         this.salaryPretension = salaryPretension;
-        this.tecnologias = new ArrayList<>();
+        this.tecnologias = tecnologias;
     }
 
     public Long getId() {
@@ -61,6 +61,14 @@ public class Candidato {
         this.salaryPretension = salaryPretension;
     }
 
+    public List<Tecnologia> getTecnologias() {
+        return tecnologias;
+    }
+
+    public void setTecnologias(List<Tecnologia> tecnologias) {
+        this.tecnologias = tecnologias;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -76,10 +84,12 @@ public class Candidato {
 
     @Override
     public String toString() {
-        return "Candidato número " + id + ":" + " " +
-                "Nombre completo: " + name + " " + lastname +
-                ". Años de experiencia: " + yearsExperience +
-                ". Pretención salarial: " + salaryPretension +
-                ". Tecnologias: " + tecnologias;
+        StringBuilder sb = new StringBuilder("Candidato número: ").append(this.id).append("\n").
+                append("Nombre completo: ").append(this.name).append(" ").append(this.lastname).append("\n").
+                append("Años de experiencia: ").append(this.yearsExperience).append("\n").
+                append("Pretencion salarial: ").append(this.salaryPretension).append("\n").
+                append("Tecnologias: ").append(this.tecnologias).append("\n").
+                append("==================================================");
+        return sb.toString();
     }
 }
