@@ -5,8 +5,8 @@ import com.pil.moby.evaluacion_tecnica.pojo.Tecnologia;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class EvaluacionTecnicaPil2 {
@@ -25,7 +25,6 @@ public class EvaluacionTecnicaPil2 {
         imprimirMensajePunto(1);
 
         // Desarrollo de la consigna 1.
-        inicializarCandidatos();
         resolverPunto1(inicializarCandidatos());
 
         imprimirMensajePunto(2);
@@ -36,7 +35,7 @@ public class EvaluacionTecnicaPil2 {
         imprimirMensajePunto(3);
 
         // Desarrollo de la consigna 3.
-        resolverPunto3();
+        resolverPunto3(inicializarCandidatos());
 
         imprimirMensajePunto(4);
 
@@ -51,21 +50,25 @@ public class EvaluacionTecnicaPil2 {
     }
 
     private static void resolverPunto1(List<Candidato> listaCandidatos) {
-        Object candidatos[] = listaCandidatos.toArray();
-        for(int i=0; i<candidatos.length; i++){
-            System.out.println(candidatos[i]);
+        Object[] candidatos = listaCandidatos.toArray();
+        for (Object candidato : candidatos) {
+            System.out.println(candidato);
         }
     }
 
     private static void resolverPunto2(List<Candidato> candidatos) {
         Stream<Candidato> candidatosPorId = candidatos.stream().sorted();
-        candidatosPorId.map(c -> new String(String.valueOf(c.getId()).concat(" ")
-                        .concat(c.getName().concat(" ").concat(c.getLastname()))))
+        candidatosPorId.map(c -> String.valueOf(c.getId()).concat(" ")
+                        .concat(c.getName().concat(" ").concat(c.getLastname())))
                 .forEach(System.out::println);
     }
 
-    private static void resolverPunto3() {
-        // TODO: Realizar implementación.
+    private static void resolverPunto3(List<Candidato> candidatos) {
+        Stream<Candidato> candidatosPorSalario = candidatos.stream();
+        candidatosPorSalario.sorted(Comparator.comparingDouble(Candidato::getSalaryPretension).reversed())
+                .map(c -> String.valueOf(c.getSalaryPretension()).concat(" ")
+                        .concat(c.getName().concat(" ").concat(c.getLastname())))
+                .forEach(System.out::println);
     }
 
     private static void resolverPunto4() {
@@ -77,7 +80,7 @@ public class EvaluacionTecnicaPil2 {
     }
 
     private static List<Candidato> inicializarCandidatos() {
-        List<Candidato> candidatos = new ArrayList();
+        List<Candidato> candidatos = new ArrayList<>();
         List<Tecnologia> tec = inicializarTecnologia();
 
         candidatos.add(new Candidato(3L, "John", "Doe", 3, 5000.00, Arrays.asList(tec.get(0), tec.get(1), tec.get(2))));
@@ -94,7 +97,7 @@ public class EvaluacionTecnicaPil2 {
         return candidatos;
     }
     private static List<Tecnologia> inicializarTecnologia() {
-        List<Tecnologia> tecnologias = new ArrayList();
+        List<Tecnologia> tecnologias = new ArrayList<>();
         tecnologias.add(new Tecnologia(1L, "Java"));
         tecnologias.add(new Tecnologia(2L, "Angular"));
         tecnologias.add(new Tecnologia(3L, "SQL"));
