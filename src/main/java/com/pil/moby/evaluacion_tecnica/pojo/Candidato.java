@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Candidato {
+public class Candidato implements Comparable{
     private Long id;
     private String name;
     private String lastname;
@@ -91,5 +91,11 @@ public class Candidato {
                 append("Tecnologias: ").append(this.tecnologias).append("\n").
                 append("==================================================");
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Candidato c = (Candidato) o;
+        return this.id.compareTo(c.id);
     }
 }

@@ -6,6 +6,8 @@ import com.pil.moby.evaluacion_tecnica.pojo.Tecnologia;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EvaluacionTecnicaPil2 {
 
@@ -29,7 +31,7 @@ public class EvaluacionTecnicaPil2 {
         imprimirMensajePunto(2);
 
         // Desarrollo de la consigna 2.
-        resolverPunto2();
+        resolverPunto2(inicializarCandidatos());
 
         imprimirMensajePunto(3);
 
@@ -55,8 +57,11 @@ public class EvaluacionTecnicaPil2 {
         }
     }
 
-    private static void resolverPunto2() {
-        // TODO: Realizar implementación.
+    private static void resolverPunto2(List<Candidato> candidatos) {
+        Stream<Candidato> candidatosPorId = candidatos.stream().sorted();
+        candidatosPorId.map(c -> new String(String.valueOf(c.getId()).concat(" ")
+                        .concat(c.getName().concat(" ").concat(c.getLastname()))))
+                .forEach(System.out::println);
     }
 
     private static void resolverPunto3() {
