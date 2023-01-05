@@ -42,7 +42,7 @@ public class EvaluacionTecnicaPil2 {
         imprimirMensajePunto(5);
 
         // Desarrollo de la consigna 3.
-        resolverPunto5();
+        resolverPunto5(inicializarCandidatos());
 
     }
 
@@ -75,8 +75,29 @@ public class EvaluacionTecnicaPil2 {
         System.out.println("Tecnologias ordenadas: " + candidatoAntiguedad.ordenarTecnologias());
     }
 
-    private static void resolverPunto5() {
-        // TODO: Realizar implementación.
+    private static void resolverPunto5(List<Candidato> candidatos) {
+        Candidato candidatoFinal = new Candidato();
+        int auxContadora = 0;
+        int contTotal =0;
+        for (Candidato candidato : candidatos) {
+            auxContadora = candidato.getTecnologias().size();
+            if (auxContadora > contTotal) {
+                contTotal = auxContadora;
+                candidatoFinal = candidato;
+            }
+        }
+
+        List<Tecnologia> tecnologiaFinal= candidatoFinal.getTecnologias();
+        Tecnologia tecPar = null;
+        for(int i=0; i < tecnologiaFinal.stream().count() ; i++){
+            if(Tecnologia.esIdPar(tecnologiaFinal.get(i).getId())){
+                tecPar = candidatoFinal.getTecnologias().get(i);
+                break;
+            }
+        }
+        System.out.println(candidatoFinal);
+        System.out.println("Tecnologia par detectada: " + tecPar);
+
     }
 
     private static List<Candidato> inicializarCandidatos() {
