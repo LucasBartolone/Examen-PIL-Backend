@@ -1,8 +1,6 @@
 package com.pil.moby.evaluacion_tecnica.pojo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Candidato implements Comparable{
     private Long id;
@@ -80,6 +78,11 @@ public class Candidato implements Comparable{
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public List<Tecnologia> ordenarTecnologias(){
+        Collections.sort(tecnologias, (Tecnologia t1, Tecnologia t2) -> t1.getNombre().compareTo(t2.getNombre()));
+        return tecnologias;
     }
 
     @Override
