@@ -10,6 +10,9 @@ public class Candidato implements Comparable{
     private Double salaryPretension;
     private List<Tecnologia> tecnologias;
 
+    public Candidato(){
+
+    }
     public Candidato(Long id, String name, String lastname, Integer yearsExperience, Double salaryPretension, List<Tecnologia> tecnologias) {
         this.id = id;
         this.name = name;
@@ -67,6 +70,11 @@ public class Candidato implements Comparable{
         this.tecnologias = tecnologias;
     }
 
+    public List<Tecnologia> ordenarTecnologias(){
+        Collections.sort(tecnologias, (Tecnologia t1, Tecnologia t2) -> t1.getNombre().compareTo(t2.getNombre()));
+        return tecnologias;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -80,9 +88,10 @@ public class Candidato implements Comparable{
         return Objects.hash(id);
     }
 
-    public List<Tecnologia> ordenarTecnologias(){
-        Collections.sort(tecnologias, (Tecnologia t1, Tecnologia t2) -> t1.getNombre().compareTo(t2.getNombre()));
-        return tecnologias;
+    @Override
+    public int compareTo(Object o) {
+        Candidato c = (Candidato) o;
+        return this.id.compareTo(c.id);
     }
 
     @Override
@@ -94,11 +103,5 @@ public class Candidato implements Comparable{
                 append("Tecnologias: ").append(this.tecnologias).append("\n").
                 append("==================================================");
         return sb.toString();
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Candidato c = (Candidato) o;
-        return this.id.compareTo(c.id);
     }
 }
