@@ -3,10 +3,7 @@ package com.pil.moby.evaluacion_tecnica.segundo_cuestionario;
 import com.pil.moby.evaluacion_tecnica.pojo.Candidato;
 import com.pil.moby.evaluacion_tecnica.pojo.Tecnologia;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class EvaluacionTecnicaPil2 {
@@ -40,7 +37,7 @@ public class EvaluacionTecnicaPil2 {
         imprimirMensajePunto(4);
 
         // Desarrollo de la consigna 3.
-        resolverPunto4();
+        resolverPunto4(inicializarCandidatos());
 
         imprimirMensajePunto(5);
 
@@ -71,8 +68,11 @@ public class EvaluacionTecnicaPil2 {
                 .forEach(System.out::println);
     }
 
-    private static void resolverPunto4() {
-        // TODO: Realizar implementación.
+    private static void resolverPunto4(List<Candidato> candidatos) {
+        Candidato candidatoAntiguedad = candidatos.stream()
+                .max(Comparator.comparingInt(Candidato::getYearsExperience)).get();
+        System.out.println(candidatoAntiguedad.toString());
+        System.out.println("Tecnologias ordenadas: " + candidatoAntiguedad.ordenarTecnologias());
     }
 
     private static void resolverPunto5() {
